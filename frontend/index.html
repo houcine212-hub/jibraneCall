@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Call</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ================= REGISTRATION SCREEN ================= -->
+<section id="screen-register" class="screen screen--center active">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="9" width="24" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+        <path d="M28 16.5L35 12V28L28 23.5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <span>Family Call</span>
+    </div>
+
+    <h1 class="auth-title">إنشاء حساب</h1>
+    <p class="auth-subtitle">دخل اسمك وصورتك باش تبدا</p>
+
+    <form id="form-register" class="auth-form">
+      <div class="avatar-picker">
+        <input type="file" id="input-avatar" accept="image/*" hidden>
+        <label for="input-avatar" class="avatar-picker__preview" id="avatar-preview">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </label>
+        <label for="input-avatar" class="avatar-picker__edit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 20h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="input-name">الاسم الكامل</label>
+        <input type="text" id="input-name" placeholder="مثال: أحمد العلوي" required maxlength="60" autocomplete="off">
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--block" id="btn-register">
+        دخول
+      </button>
+      <p class="auth-error" id="register-error"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= HOME / USERS LIST SCREEN ================= -->
+<section id="screen-home" class="screen">
+  <header class="topbar">
+    <div class="topbar__brand">
+      <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="9" width="24" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+        <path d="M28 16.5L35 12V28L28 23.5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <span>Family Call</span>
+    </div>
+    <div class="topbar__me" id="topbar-me">
+      <span class="topbar__me-name" id="me-name"></span>
+      <div class="topbar__me-avatar" id="me-avatar"></div>
+    </div>
+  </header>
+
+  <main class="home-main">
+    <div class="home-main__head">
+      <h2>الأعضاء</h2>
+      <span class="pill" id="online-count">0 متصل</span>
+    </div>
+
+    <div class="user-list" id="user-list">
+      <!-- Users injected here by JS -->
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>ماكاينش أعضاء آخرين دابا. راه واحد آخر خاصو يسجل.</p>
+  </main>
+</section>
+
+<!-- ================= OUTGOING CALL SCREEN ================= -->
+<section id="screen-calling" class="screen screen--call">
+  <div class="call-panel">
+    <div class="call-panel__avatar" id="calling-avatar"></div>
+    <h2 class="call-panel__name" id="calling-name">—</h2>
+    <p class="call-panel__status">كيتصوّب...</p>
+    <div class="call-panel__pulse"></div>
+  </div>
+  <div class="call-actions">
+    <button class="call-btn call-btn--decline" id="btn-cancel-call" title="إلغاء">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6.5C7 2 17 2 22 6.5c.5.45.5 1.2-.05 1.6l-3.2 2.4c-.5.37-1.2.3-1.6-.15l-1.6-1.8a13.6 13.6 0 00-6.1 0l-1.6 1.8c-.4.45-1.1.52-1.6.15L2.05 8.1A1.15 1.15 0 012 6.5z" stroke="currentColor" stroke-width="1.8" transform="rotate(135 12 12)"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- ================= INCOMING CALL SCREEN ================= -->
+<section id="screen-incoming" class="screen screen--call">
+  <div class="call-panel">
+    <div class="call-panel__avatar" id="incoming-avatar"></div>
+    <h2 class="call-panel__name" id="incoming-name">—</h2>
+    <p class="call-panel__status">كيتصل بيك...</p>
+    <div class="call-panel__pulse"></div>
+  </div>
+  <div class="call-actions call-actions--dual">
+    <button class="call-btn call-btn--decline" id="btn-decline-call" title="رفض">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6.5C7 2 17 2 22 6.5c.5.45.5 1.2-.05 1.6l-3.2 2.4c-.5.37-1.2.3-1.6-.15l-1.6-1.8a13.6 13.6 0 00-6.1 0l-1.6 1.8c-.4.45-1.1.52-1.6.15L2.05 8.1A1.15 1.15 0 012 6.5z" stroke="currentColor" stroke-width="1.8" transform="rotate(135 12 12)"/>
+      </svg>
+    </button>
+    <button class="call-btn call-btn--accept" id="btn-accept-call" title="قبول">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6.5C7 2 17 2 22 6.5c.5.45.5 1.2-.05 1.6l-3.2 2.4c-.5.37-1.2.3-1.6-.15l-1.6-1.8a13.6 13.6 0 00-6.1 0l-1.6 1.8c-.4.45-1.1.52-1.6.15L2.05 8.1A1.15 1.15 0 012 6.5z" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- ================= ACTIVE VIDEO CALL SCREEN ================= -->
+<section id="screen-in-call" class="screen screen--in-call">
+  <div class="video-stage">
+    <video id="video-remote" autoplay playsinline></video>
+    <div class="video-local-wrap">
+      <video id="video-local" autoplay playsinline muted></video>
+    </div>
+    <div class="in-call-name" id="in-call-name"></div>
+  </div>
+
+  <div class="call-actions call-actions--bar">
+    <button class="call-btn call-btn--ghost" id="btn-toggle-mic" title="كتم الصوت">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3z" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="call-btn call-btn--decline call-btn--lg" id="btn-end-call" title="إنهاء المكالمة">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6.5C7 2 17 2 22 6.5c.5.45.5 1.2-.05 1.6l-3.2 2.4c-.5.37-1.2.3-1.6-.15l-1.6-1.8a13.6 13.6 0 00-6.1 0l-1.6 1.8c-.4.45-1.1.52-1.6.15L2.05 8.1A1.15 1.15 0 012 6.5z" stroke="currentColor" stroke-width="1.8" transform="rotate(135 12 12)"/>
+      </svg>
+    </button>
+    <button class="call-btn call-btn--ghost" id="btn-toggle-cam" title="كتم الكاميرا">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="6" width="14" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M16 10l6-3.5v11L16 14" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
